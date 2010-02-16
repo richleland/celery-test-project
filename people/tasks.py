@@ -1,6 +1,5 @@
 from datetime import date, timedelta
 from celery.task import Task, PeriodicTask
-from celery.registry import tasks
 from people.models import Person
 
 class CanDrinkTask(Task):
@@ -40,5 +39,3 @@ class FullNameTask(PeriodicTask):
                                          person.suffix]).strip()
             person.save()
         return True
-
-tasks.register(FullNameTask)
